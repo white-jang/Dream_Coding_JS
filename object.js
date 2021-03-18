@@ -110,7 +110,7 @@ user2.name = 'coder'; // ellie에서 corder로 name이 변경됨
 console.log(user);
 
 // 깊은 복사하는 방법
-// old way (루프를 이용해서 key-value를 새로 할당)
+// 1. old way (루프를 이용해서 key-value를 새로 할당)
 const user3 = {};
 for (let key in user) {
     user3[key] = user[key];
@@ -118,10 +118,10 @@ for (let key in user) {
 // console.clear();
 console.log(user3);
 
-const user4 = Object.assign({}, user); // 메소드를 이용해서 obj 복사
+const user4 = Object.assign({}, user); // 2. 메소드를 이용해서 obj 복사
 console.log(user4);
 
-// another example
+// 2번의 another example
 const fruit1 = {
     color: 'red'
 };
