@@ -1,14 +1,8 @@
-import React from 'react';
-import Hello from './hello';
-import Wrapper from './Wrapper';
+import React from "react";
+import InputSample from "./inputSample";
 
 function App() {
-  return (
-    <Wrapper>
-      <Hello name="react" color="red"/>
-      <Hello color="pink"/>
-    </Wrapper>
-  );
+    return <InputSample />;
 }
 
 export default App;
