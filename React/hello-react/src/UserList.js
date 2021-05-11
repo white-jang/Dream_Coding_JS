@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useContext } from "react";
+import { UserDispatch } from "./App";
 
-const User = React.memo(function User({ user, onRemove, onToggle }) {
+const User = React.memo(function User({ user }) {
   const { username, email, id } = user;
+  const dispatch = useContext(UserDispatch);
 
   // useEffect(() => {
   //   // deps가 빈 배열이면 컴포넌트가 마운트될 때 실행
@@ -12,38 +14,35 @@ const User = React.memo(function User({ user, onRemove, onToggle }) {
   //   };
   // }, []);
 
-  useEffect(() => {
-    // user 값이 설정되거나(=마운트될 때) 업데이트될 때마다 실행
-    console.log(user);
-  }, [user]);
+  // useEffect(() => {
+  //   // user 값이 설정되거나(=마운트될 때) 업데이트될 때마다 실행
+  //   console.log(user);
+  // }, [user]);
 
   return (
     <div>
       <b
         style={{ color: user.active ? "green" : "black", cursor: "pointer" }}
-        onClick={() => onToggle(id)}
+        onClick={() => dispatch({ type: "TOGGLE_USER", id })}
       >
         {username}
       </b>
       &nbsp;
       <span>({email})</span>
-      <button onClick={() => onRemove(id)}>삭제</button>
+      <button onClick={() => dispatch({ type: "REMOVE_USER", id })}>
+        삭제
+      </button>
     </div>
   );
 });
 
-function UserList({ users, onRemove, onToggle }) {
+function UserList({ users }) {
   return (
     <div>
       {
         // 웬만하면 key는 인덱스를 사용해서 만들지 않는 것이 좋다
         users.map((user) => (
-          <User
-            user={user}
-            key={user.id}
-            onRemove={onRemove}
-            onToggle={onToggle}
-          />
+          <User user={user} key={user.id} />
         ))
       }
     </div>
